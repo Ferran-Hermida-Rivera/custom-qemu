@@ -563,6 +563,7 @@ static void riscv_cpu_dump_state(CPUState *cs, FILE *f, int flags)
             CSR_MSCRATCH,
             CSR_SSCRATCH,
             CSR_SATP,
+            CSR_TESTER,
         };
 
         for (i = 0; i < ARRAY_SIZE(dump_csrs); ++i) {

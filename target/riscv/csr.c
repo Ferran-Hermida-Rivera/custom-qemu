@@ -5470,6 +5470,21 @@ static RISCVException write_mnstatus(CPURISCVState *env, int csrno,
     return RISCV_EXCP_NONE;
 }
 
+static RISCVException read_tester(CPURISCVState *env, int csrno,
+                                 target_ulong *val)
+{
+    /* return tester csr value */
+    *val = env->tester;
+    return RISCV_EXCP_NONE;
+}
+
+static RISCVException write_tester(CPURISCVState *env, int csrno,
+                                 target_ulong val, uintptr_t ra)
+{
+    /* sets tester csr value to val */
+    env->tester = val;
+    return RISCV_EXCP_NONE;
+}
 #endif
 
 /* Crypto Extension */
@@ -6666,6 +6681,9 @@ riscv_csr_operations csr_ops[CSR_TABLE_SIZE] = {
                              write_mhpmcounterh                         },
     [CSR_SCOUNTOVF]      = { "scountovf", sscofpmf,  read_scountovf,
                              .min_priv_ver = PRIV_VERSION_1_12_0 },
+
+    /* Custom CSRs */
+    [CSR_TESTER]         = { "0x810", smode, read_tester, write_tester },
 
 #endif /* !CONFIG_USER_ONLY */
 };

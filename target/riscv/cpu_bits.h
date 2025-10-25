@@ -607,6 +607,9 @@
 /* Zcmt Extension */
 #define CSR_JVT             0x017
 
+/* Custom CSRs */
+#define CSR_TESTER          0x810
+
 /* mstatus CSR bits */
 #define MSTATUS_UIE         0x00000001
 #define MSTATUS_SIE         0x00000002
