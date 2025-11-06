@@ -5485,6 +5485,20 @@ static RISCVException write_tester(CPURISCVState *env, int csrno,
     env->tester = val;
     return RISCV_EXCP_NONE;
 }
+
+static RISCVException read_dprefetcher_ctl(CPURISCVState *env, int csrno,
+                                        target_ulong *val)
+{
+    *val = env->dprefetcher_ctl;
+    return RISCV_EXCP_NONE;
+}
+
+static RISCVException write_dprefetcher_ctl(CPURISCVState *env, int csrno,
+                                        target_ulong val, uintptr_t ra)
+{
+    env->dprefetcher_ctl = val;
+    return RISCV_EXCP_NONE;
+}
 #endif
 
 /* Crypto Extension */
@@ -6684,6 +6698,8 @@ riscv_csr_operations csr_ops[CSR_TABLE_SIZE] = {
 
     /* Custom CSRs */
     [CSR_TESTER]         = { "0x810", smode, read_tester, write_tester },
+    [CSR_DPREFETCHER_CTL]= { "0x830", smode, read_dprefetcher_ctl,
+                            write_dprefetcher_ctl },
 
 #endif /* !CONFIG_USER_ONLY */
 };

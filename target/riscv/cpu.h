@@ -515,6 +515,7 @@ struct CPUArchState {
     uint64_t rnmi_excpvec;
 
     target_ulong tester;
+    target_ulong dprefetcher_ctl;
 };
 
 /*

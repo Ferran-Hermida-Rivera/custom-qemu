@@ -609,6 +609,7 @@
 
 /* Custom CSRs */
 #define CSR_TESTER          0x810
+#define CSR_DPREFETCHER_CTL 0x830
 
 /* mstatus CSR bits */
 #define MSTATUS_UIE         0x00000001
